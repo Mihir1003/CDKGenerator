@@ -1,0 +1,30 @@
+{
+    "resources": [
+        {
+            "resource":"S3Bucket",
+            "name": "myBucket"
+        },
+            {
+                "resource":"Lambda",
+                "name": "myLambda",
+                "code": {
+                    "type":"Asset",
+                    "path":"assets",
+                    "key":"code",
+                    "runtime": "node12",
+                    "handler": "index.main"
+                }
+                
+            },
+            {
+                "resource":"ApiGateway",
+                "name": "myApiGateway",
+                "triggers": {
+                    "type":"lambda",
+                    "dependencyName": "myLambda"
+                }
+            }
+
+        
+    ]
+}
